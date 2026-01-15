@@ -6,9 +6,18 @@ export const registerSchema = Joi.object({
 
     password: Joi.string()
     .min(8)
-    .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$"))
-    .required()
-    .message({
-        "string.pattren.base": "Password must contain uppercase, lowercase and a number"
+    .messages({
+        "string.min": "Password must be at least 8 characters long"
     })
+    .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$"))
+    .messages({
+        "string.pattern.base":
+        "Password must contain uppercase, lowercase and a number"
+    })
+    .required()
+})
+
+export const loginSchema = Joi.object({
+    email: Joi.string().email().required(),
+    password: Joi.string().required()
 })
