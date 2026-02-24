@@ -1,4 +1,4 @@
-import { User } from "../models/User.model";
+import { User } from "../models/User.model.js";
 
 export const getUsers = async (query) => {
     const page = Math.max(parseInt(query.page) || 1, 1)

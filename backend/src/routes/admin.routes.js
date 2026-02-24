@@ -7,6 +7,6 @@ import { listUsers } from "../controllers/user.controller.js";
 const router = express.Router()
 
 router.get("/dashboard", protect, authorize("admin"), getAdminData)
-router.get('/', protect, authoriz("admin"), listUsers)
+router.get('/', protect, authorize("admin"), listUsers)
 
 export default router

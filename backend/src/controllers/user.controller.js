@@ -1,5 +1,5 @@
-import { getUsers } from "../services/users.service";
-import { ApiResponse } from "../utils/ApiResponse";
+import { getUsers } from "../services/users.service.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 
 export const getProfile = (req, res) => {
   res.status(200).json({
