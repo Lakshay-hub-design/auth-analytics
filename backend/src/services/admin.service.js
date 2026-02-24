@@ -1,4 +1,4 @@
-import { User } from "../models/User.model";
+import { User } from "../models/User.model.js";
 
 export const getAdminStats = async () => {
     const totalUsersPromise = User.countDocuments()
@@ -23,15 +23,20 @@ export const getAdminStats = async () => {
         { $sort: { _id: 1 } }
     ]);
 
-    const [totalUser, userByRole, newUsersLast7Days] = await Promise.all([
+    const [totalUser, usersByRoleRaw, newUsersLast7Days] = await Promise.all([
         totalUsersPromise,
         userByRolePromise,
         newUsersLast7DaysPromise
     ])
 
+    const usersByRole = usersByRoleRaw.reduce((acc, item) => {
+        acc[item._id] = item.count;
+        return acc;
+    }, {});
+
     return {
         totalUser,
-        userByRole,
+        usersByRole,
         newUsersLast7Days
     }
 }

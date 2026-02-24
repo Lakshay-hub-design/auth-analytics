@@ -40,7 +40,7 @@ export const loginUser = async ({email, password}) => {
 
     return {
         accessToken,
-        refreshToken    
+        refreshToken   
     }
 }
 
